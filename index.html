@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="robots" content="none">
+	  <title>Title</title>
+      <link rel="stylesheet" href="css/main.css" media="screen">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jflickrfeed.min.js"></script>
+<script>
+	$(window).load(function()
+		{
+			$('.gallery').each(function(index) {
+				var tag = $(this).data('tags');
+				$(this).attr('tags', tag).jflickrfeed({
+					limit: 10,
+					qstrings: {
+						tags: tag
+					},
+					itemTemplate:
+					'<li>' +
+						'<a href="{{image}}" title="{{title}}">' +
+							'<img src="{{image_s}}" alt="{{title}}" />' +
+						'</a>' +
+					'</li>'
+				}, function(data) {});
+			});
+		}
+	);
+</script>
+	</head>
+	<body>
+		<div class="content">
+			<h1>Photo gallery</h1>
+			<ul class="gallery" data-tags="batman"></ul>
+			<ul class="gallery" data-tags="spiderman"></ul>
+			<ul class="gallery" data-tags="superman"></ul>
+		</div>
+	</body>
+</html>
